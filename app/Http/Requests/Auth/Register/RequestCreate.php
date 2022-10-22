@@ -30,7 +30,7 @@ class RequestCreate extends FormRequest
             'nick_name'             => 'required',
             'cell'                  => 'required',
             'year'                  => 'required',
-            'photo'                 => 'required',
+            'photo'                 => 'required|image|mimes:png,jpg',
             'description'           => 'required',
             'job'                   => 'required',
             'livin_in'              => 'required',

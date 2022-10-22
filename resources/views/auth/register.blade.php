@@ -9,7 +9,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
             @csrf
             <div><!-- Name -->
                 <x-label for="name" :value="__('Name')" />
@@ -120,7 +120,7 @@
             </div>
             <div class="mt-4"><!-- photo -->
                 <x-label for="photo" :value="__('Foto')" />
-                <x-input id="photo" class="block mt-1 w-full" type="file" name="photo" :value="old('photo')" required />
+                <x-input class="block mt-1 w-full" type="file" id="photo" name="photo" :value="old('photo')" required />
             </div>
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">

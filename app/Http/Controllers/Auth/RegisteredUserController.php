@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Filter;
 use App\Models\Gender;
 use App\Models\Smoking;
+use Illuminate\Support\Str;
 use App\Models\SexualOrietation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Register\RequestCreate;
-use App\Models\Filter;
 
 class RegisteredUserController extends Controller
 {
@@ -37,7 +38,7 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(RequestCreate $request)
-    {
+    {        
         $data     = $request->only('sexual_orientation', 'gender', 'smokings', 'year_min', 'year_max');
         $dataUser = $request->except('sexual_orientation', 'gender', 'smokings', 'year_min', 'year_max', '_token');
         Filter::create($this->filterName($data));
@@ -47,8 +48,11 @@ class RegisteredUserController extends Controller
             'filter_id' => $filter['id']
         ];
 
+        $fileName = Str::slug($dataUser['name'].'_'.$dataUser['nick_name'], '_').'.'.$dataUser['photo']->extension();
+        $dataUser['photo'] = $request->photo->storeAs('photo', $fileName, 'public');
+        
         $createUser = (array_merge($dataUser, $filterId));
-    
+        
         User::create($createUser);
 
         return view('auth.login');
