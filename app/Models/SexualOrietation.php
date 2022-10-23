@@ -18,11 +18,11 @@ class SexualOrietation extends Model
 
     public function users()
     {
-        return $this->hasOne(User::class, 'id', 'sexual_orietation_id');
+        return $this->hasOne(User::class, 'sexual_orietation_id', 'id');
     }
 
     public function filters()
     {
-        return $this->hasOne(Filter::class, 'id', 'sexual_orietation_id');
+        return $this->hasOne(Filter::class, 'sexual_orientation_id', 'id');
     }
 }

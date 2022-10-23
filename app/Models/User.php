@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -54,24 +53,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function genders()
-    {
-        return $this->hasOne(Gender::class, 'gender_id', 'id');
-    }
-
     public function sexualOrietations()
     {
-        return $this->hasOne(SexualOrietation::class, 'sexual_orietation_id', 'id');
+        return $this->hasOne(SexualOrietation::class, 'id', 'sexual_orietation_id');
+    }
+
+    public function genders()
+    {
+        return $this->hasOne(Gender::class, 'id', 'gender_id');
     }
 
     public function smokings()
     {
-        return $this->hasOne(Smoking::class, 'smoking_id', 'id');
+        return $this->hasOne(Smoking::class, 'id', 'smoking_id');
     }
 
     public function filters()
     {
-        return $this->hasOne(Filter::class, 'filter_id', 'id');
+        return $this->hasOne(Filter::class, 'id', 'filter_id');
     }
 
     public function setPasswordAttribute($value)

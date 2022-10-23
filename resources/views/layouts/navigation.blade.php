@@ -18,14 +18,14 @@
                 </div>
                 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('teste')" :active="request()->routeIs('teste')">
+                    <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
                         {{ __('Perfil') }} <!-- Nome no menu -->
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('teste')" :active="request()->routeIs('teste')">
-                        {{ __('Seus Interesses') }} <!-- Nome no menu -->
+                    <x-nav-link :href="route('match')" :active="request()->routeIs('match')">
+                        {{ __('Meus Interesses') }} <!-- Nome no menu -->
                     </x-nav-link>
                 </div>
                 

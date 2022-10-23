@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
             GenderSeeder::class,
             SexualOrietationSeeder::class,
             SmokingSeeder::class,
-            FilterSeeder::class,
-            UserSeeder::class,
+            // FilterSeeder::class,
+            // UserSeeder::class,
         ]);
     }
 }

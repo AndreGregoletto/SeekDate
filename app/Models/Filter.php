@@ -28,16 +28,16 @@ class Filter extends Model
 
     public function sexualOrietations()
     {
-        return $this->hasOne(SexualOrietation::class, 'sexual_orietation_id', 'id');
+        return $this->hasOne(SexualOrietation::class, 'id', 'sexual_orientation_id');
     }
 
     public function genders()
     {
-        return $this->hasOne(Gender::class, 'gender_id', 'id');
+        return $this->hasOne(Gender::class, 'id', 'gender_id');
     }
 
     public function smokings()
     {
-        return $this->hasOne(Smoking::class, 'smoking_id', 'id');
+        return $this->hasOne(Smoking::class, 'id', 'smoking_id');
     }
 }
