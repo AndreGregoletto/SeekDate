@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Gender;
+use App\Models\SexualOrietation;
+use App\Models\Smoking;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -17,12 +20,26 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $genderId  = Gender::pluck('id')->toArray();
+        $sexualId  = SexualOrietation::pluck('id')->toArray();
+        $smokingId = Smoking::pluck('id')->toArray();
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'password' => 123,
+            'nick_name'             => fake()->name(),
+            'cell'                  => fake()->phoneNumber(),
+            'year'                  => fake()->numberBetween(18, 80),
+            'photo'                 => fake()->imageUrl(),
+            'description'           => fake()->sentence(),
+            'job'                   => fake()->jobTitle(),
+            'livin_in'              => fake()->address(),
+            'gender_id'             => fake()->randomElement($genderId),
+            'sexual_orientation_id' => fake()->randomElement($sexualId),
+            'smoking_id'            => fake()->randomElement($smokingId),
+            'filter_id'             => 1,
+            'admin'                 => 0
         ];
     }
 

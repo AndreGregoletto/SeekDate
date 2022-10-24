@@ -41,17 +41,17 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('teste')" :active="request()->routeIs('teste')">
+                    <x-nav-link :href="route('admin.gender.index')" :active="request()->routeIs('admin.gender.*')">
                         {{ __('Gêneros') }} <!-- Nome no menu -->
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('teste')" :active="request()->routeIs('teste')">
+                    <x-nav-link :href="route('admin.sexualOrientation.index')" :active="request()->routeIs('admin.sexualOrientation.*')">
                         {{ __('Orientação Sexual') }} <!-- Nome no menu -->
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('teste')" :active="request()->routeIs('teste')">
+                    <x-nav-link :href="route('admin.smoking.index')" :active="request()->routeIs('admin.smoking.*')">
                         {{ __('Fuma?') }} <!-- Nome no menu -->
                     </x-nav-link>
                 </div>
