@@ -18,8 +18,12 @@ Route::get('/teste', function () {
 
 Route::resource('profile', ProfileController::class)->middleware(['auth']);
 
-Route::controller(MatchController::class)->group(function(){
-    Route::get('/match', 'index')->name('match')->middleware(['auth']);
+Route::controller(MatchController::class)->middleware(['auth'])->group(function(){
+    Route::get('/match', 'index')->name('match');
+
+    Route::post('/recuseMatch', 'recuseMatch')->name('recuseMatch');
+
+    Route::post('/acceptMatch', 'acceptMatch')->name('acceptMatch');
 });
 
 require __DIR__.'/auth.php';

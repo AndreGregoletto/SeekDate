@@ -26,8 +26,12 @@
               </div>
             </div>
           </div>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a href="{{route('profile.edit', $oUser['id'])}}" class="btn btn-primary">Editar</a>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-top: -20px">
+            <a href="{{route('profile.edit', $oUser['id'])}}">
+              <x-button class="ml-4">
+                {{ __('Editar') }}
+              </x-button>
+            </a>
           </div>
         </div>
       </div>

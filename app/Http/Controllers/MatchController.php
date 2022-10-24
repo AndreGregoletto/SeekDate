@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\Match\Request as MatchRequest;
 use App\Models\Filter;
 use App\Models\User;
 
@@ -16,7 +17,10 @@ class MatchController extends Controller
                           ->get();
 
         $data  = $this->getFilter($oUsers, $filter);
+        // dd($data->get());
         $datas = $data->paginate(1);
+        
+        // $recuse = $this->recuseMatch($datas[0]->id);
             
         return view('match', ['datas' => $datas]);
     }
@@ -43,6 +47,16 @@ class MatchController extends Controller
         }
 
         return $data;
+    }
+
+    public function acceptMatch(MatchRequest $request)
+    {
+        dd($request->validated(), 'Aceitou');
+    }
+
+    public function recuseMatch(MatchRequest $request)
+    {
+        dd('Recusou', $request->validated());
     }
 
 }
