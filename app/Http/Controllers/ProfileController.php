@@ -65,15 +65,22 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $oUser             = User::where('id', $id)->with('sexualOrietations', 'genders', 'smokings', 'filters')->get();
+        $oUser             = User::where('id', $id)->with(
+                                                        'sexualOrietations', 
+                                                        'genders', 
+                                                        'smokings', 
+                                                        'filters'
+                                                    )->get();
         $sexualOrietations = SexualOrietation::get();
         $smokings          = Smoking::get();
         $genders           = Gender::get();
 
-        return view('profile.edit', ['oUser' => $oUser, 
-                                     'sexualOrietations' => $sexualOrietations, 
-                                     'smokings' => $smokings, 
-                                     'genders' => $genders]);
+        return view('profile.edit', [
+                                    'oUser' => $oUser, 
+                                    'sexualOrietations' => $sexualOrietations, 
+                                    'smokings' => $smokings, 
+                                    'genders' => $genders
+                                ]);
     }
 
     /**
@@ -85,16 +92,30 @@ class ProfileController extends Controller
      */
     public function update(RequestUpdate $request, User $user, $id)
     {
-        $data = $request->except('sexual_orientation', 'gender', 'smokings', 'year_min', 'year_max', '_token', '_method');
+        $data = $request->except(
+                                'sexual_orientation', 
+                                'gender', 
+                                'smokings', 
+                                'year_min', 
+                                'year_max', 
+                                '_token', 
+                                '_method'
+                            );
         
         if($request->hasFile('photo')){
             Storage::disk('public')->delete(auth()->user()->photo);
 
-            $fileName = Str::slug($data['name'].'_'.$data['nick_name'], '_').'.'.$data['photo']->extension();
+            $fileName      = Str::slug($data['name'].'_'.$data['nick_name'], '_').'.'.$data['photo']->extension();
             $data['photo'] = $request->photo->storeAs('photo', $fileName, 'public');
         }
 
-        $dataFilter = $request->only('sexual_orientation', 'gender', 'smokings', 'year_min', 'year_max');
+        $dataFilter = $request->only(
+                                    'sexual_orientation', 
+                                    'gender', 
+                                    'smokings', 
+                                    'year_min', 
+                                    'year_max'
+                                );
         $teste      = $this->filterName($dataFilter);
         Filter::where('id', $id)->update($teste);
 

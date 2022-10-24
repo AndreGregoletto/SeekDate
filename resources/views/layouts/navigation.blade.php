@@ -32,11 +32,11 @@
                 @if(auth()->user()->admin == 1)
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link disabled style="cursor: default">
-                        {{ __('ADMIN') }} <!-- Nome no menu -->
+                        <strong>{{ __('ADMIN') }} <!-- Nome no menu --></strong>
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('teste')" :active="request()->routeIs('teste')">
+                    <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.*')">
                         {{ __('Usuários') }} <!-- Nome no menu -->
                     </x-nav-link>
                 </div>

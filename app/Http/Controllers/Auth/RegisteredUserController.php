@@ -24,8 +24,8 @@ class RegisteredUserController extends Controller
         $smokings           = Smoking::get();
         $sexualOrientations = SexualOrietation::get();
 
-        return view('auth.register', ['genders' => $genders, 
-                                      'smokings' => $smokings, 
+        return view('auth.register', ['genders'             => $genders, 
+                                      'smokings'            => $smokings, 
                                       'sexualOrientations'  => $sexualOrientations]);
     }
 

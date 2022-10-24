@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function sexualOrietations()
     {
-        return $this->hasOne(SexualOrietation::class, 'id', 'sexual_orietation_id');
+        return $this->hasOne(SexualOrietation::class, 'id', 'sexual_orientation_id');
     }
 
     public function genders()

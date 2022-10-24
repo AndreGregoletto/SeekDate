@@ -1,0 +1,7 @@
+- Criar uma Action para ajustar os campos do Filter;
+-> Nas controllers : ProfileController;
+RegisteredUserController;
+UserControler
+- Criar uma sistema de data para calcular a idade;
+- Criar a regra do match;
+- Criar a pagina de atividades no dashboard
