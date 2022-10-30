@@ -18,7 +18,7 @@
                                 <x-label for="sexual_orientation" :value="__('Orientação Sexual')" />
                                 <select name="sexual_orientation" class="block mt-1 w-full">
                                     @foreach ($sexualOrietations as $sexualOrietation)
-                                        <option value="{{ $sexualOrietation['id'] }}" {{ $sexualOrietation['id'] == $oUser[0]['sexual_orientation'] ? "selected" : ""}}> {{ $sexualOrietation['name'] }}</option>
+                                        <option value="{{ $sexualOrietation['id'] }}" {{ $sexualOrietation['id'] == $oUser[0]['sexualOrietations']->id ? "selected" : ""}}> {{ $sexualOrietation['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>

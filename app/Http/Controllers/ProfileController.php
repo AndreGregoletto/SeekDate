@@ -116,8 +116,9 @@ class ProfileController extends Controller
                                     'year_min', 
                                     'year_max'
                                 );
-        $teste      = $this->filterName($dataFilter);
-        Filter::where('id', $id)->update($teste);
+        $updateData      = $this->filterName($dataFilter);
+
+        Filter::where('id', $id)->update($updateData);
 
         $filterId = [
             'filter_id' => auth()->user()->filter_id

@@ -9,10 +9,10 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
-          <div class="card m-5" style="max-width: auto; min-height: auto">
+          <div class="card m-5" style="max-width: 2000px; min-height: auto">
             <div class="row g-0">
               <div class="col-md-4">
-                <img src="{{ asset('storage/'.$oUser['photo']) }}"  class="rounded mx-auto d-block">
+                <img src="{{ asset('storage/'.$oUser['photo']) }}"  class="rounded d-block" style="max-height: 425px; min-height: 425px;">
               </div>
               <div class="col-md-7">
               <div class="card-body">

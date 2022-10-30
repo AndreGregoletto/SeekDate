@@ -73,6 +73,11 @@ class User extends Authenticatable
         return $this->hasOne(Filter::class, 'id', 'filter_id');
     }
 
+    public function combines()
+    {
+        return $this->hasMany(Combine::class, 'user_secound_id', 'id');
+    }
+
     public function setPasswordAttribute($value)
     {
         if(!is_null($value)){

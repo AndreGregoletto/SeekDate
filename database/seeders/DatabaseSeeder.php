@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            // GenderSeeder::class,
-            // SexualOrietationSeeder::class,
-            // SmokingSeeder::class,
+            GenderSeeder::class,
+            SexualOrietationSeeder::class,
+            SmokingSeeder::class,
             // FilterSeeder::class,
             // UserSeeder::class,
         ]);

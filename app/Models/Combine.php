@@ -16,4 +16,14 @@ class Combine extends Model
         'user_secound_active',
         'active'
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'id', 'user_secound_id');
+    }
+
+    // public function usersSecound()
+    // {
+    //     return $this->hasMany(User::class, 'id', 'user_secound_id');
+    // }
 }

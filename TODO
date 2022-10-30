@@ -5,3 +5,4 @@ UserControler
 - Criar uma sistema de data para calcular a idade;
 - Criar a regra do match;
 - Criar a pagina de atividades no dashboard
+- Corrigir os bugs visuais da view profile.edit

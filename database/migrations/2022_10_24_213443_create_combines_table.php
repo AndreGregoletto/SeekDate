@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('user_first_id')->constrained('users', 'id');
             $table->boolean('user_first_active')->nullable()->default(0);
             $table->foreignId('user_secound_id')->constrained('users', 'id');
-            $table->boolean('user_secound_active')->nullable()->default(0);
-            $table->boolean('active')->nullable()->default(0);
+            $table->boolean('user_secound_active')->default(0);
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }
