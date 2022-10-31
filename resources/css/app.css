@@ -6,3 +6,11 @@
     background-color: black;
     color: white;
 }
+
+.match-accept:hover{
+    color: red;
+}
+
+.match-recuse:hover{
+    color: rgb(36, 131, 240);
+}

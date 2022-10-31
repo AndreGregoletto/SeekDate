@@ -24,6 +24,12 @@ Route::controller(MatchController::class)->middleware(['auth'])->group(function(
     Route::post('/recuseMatch', 'recuseMatch')->name('recuseMatch');
 
     Route::post('/acceptMatch', 'acceptMatch')->name('acceptMatch');
+
+    Route::get('dashboard', 'whoMatchMe')->name('dashboard');
+
+    route::post('returnAccept', 'returnAccept')->name('returnAccept');
+
+    route::post('returnRecuse', 'returnRecuse')->name('returnRecuse');
 });
 
 require __DIR__.'/auth.php';

@@ -29,7 +29,7 @@ class MatchController extends Controller
                 $checkIn[] = $data;
             }else{
                 foreach($data['combines'] as $combine){
-                    if(($combine->user_first_id != auth()->user()->id) == true){
+                    if((($combine->user_first_id != auth()->user()->id) == true) && ($combine->user_first_active != 1)){
                         $checkIn[] = $data;
                     }else{
                         $checkIn = []; //erro
@@ -80,39 +80,91 @@ class MatchController extends Controller
             'active'              => 0
         ];
 
-        Combine::create($newCombine);
+        Combine::updateOrCreate($newCombine);
 
         return redirect()->route('match');
     }
 
     public function recuseMatch(MatchRequest $request)
     {
-        dd('Recusou', $request->validated());
+        $newCombine = [
+            'user_first_id'       => auth()->user()->id,
+            'user_first_active'   => 0,
+            'user_secound_id'     => $request->only('id')['id'],
+            'user_secound_active' => 0,
+            'active'              => 0
+        ];
+
+        Combine::updateOrCreate($newCombine);
+
+        return redirect()->route('match');
     }
 
-    protected function filter($firstId, $secoundId, $data)
+    public function whoMatchMe()
     {
-        // dd($firstId, $secoundId, $data); // Entrou
-        if(isset($firstId, $secoundId) && $firstId != $secoundId){
-            dd($data);
-            dd(count($data->where('user_secound_id', $secoundId)) != $secoundId);
-            if(count($data = $data->where('user_secound_active', $secoundId)) == 0 && count($data->where('user_secound_active', $secoundId)) == 0){
-                $data = [
-                    'user_first_id'       => $firstId,
-                    'user_first_active'   => 1,
-                    'user_secound_id'     => $secoundId,
-                    'user_secound_active' => 0,
-                    'active'              => 0
-                ];
+        $combines = Combine::where('user_secound_id', auth()->user()->id)->orderBy('active', 'asc')->with('users')->get();
 
-                Combine::create($data);
-                return back();
+        foreach($combines as $combine){
+
+            if(($combine->user_secound_id == auth()->user()->id) && ($combine->user_first_active == 1) && ($combine->active == 0)){
+                $aDatas[] = [
+                    'user_first_id' => $combine->user_first_id
+                ] ;
+
+                foreach ($aDatas as $data) {
+                    if(isset($data)){
+                        $users      = User::where('id', $data['user_first_id'])->get();
+                    }else{
+                        $error[] = [];
+                    }
+                }
+                $oProfile = $users[0];
+
+                return view('dashboard', ['oProfile' => $oProfile]);
+                
             }else{
-                dd('else');
-            };
-            //count($data = $data->where('user_secound_active', 1)) == 0
+                return view('dashboard'); 
+            }
         }
-        
+
+    }
+
+    public function returnAccept(MatchRequest $request)
+    {
+        $combines = Combine::where('user_first_id', $request->only('id')['id'])
+                           ->where('user_first_active', 1)
+                           ->where('user_secound_id', auth()->user()->id)
+                           ->get();
+
+        $newStatus = [
+            'user_first_id'       => $request->only('id')['id'],
+            'user_first_active'   => 1,
+            'user_secound_id'     => auth()->user()->id,
+            'user_secound_active' => 1,
+            'active'              => 1
+        ];
+
+        Combine::where('id', $combines[0]->id)->update($newStatus);
+        return redirect()->route('dashboard');
+    }
+
+    public function returnRecuse(MatchRequest $request)
+    {
+        $combines = Combine::where('user_first_id', $request->only('id')['id'])
+                    ->where('user_first_active', 1)
+                    ->where('user_secound_id', auth()->user()->id)
+                    ->get();
+
+        $newStatus = [
+            'user_first_id'       => $request->only('id')['id'],
+            'user_first_active'   => 0,
+            'user_secound_id'     => auth()->user()->id,
+            'user_secound_active' => 0,
+            'active'              => 0
+        ];
+
+        Combine::where('id', $combines[0]->id)->update($newStatus);
+        return redirect()->route('dashboard');
     }
 
 }
