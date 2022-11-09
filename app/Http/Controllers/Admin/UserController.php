@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('sexualOrietations', 'genders')->paginate(10);
+        $users = User::with('sexualOrietations', 'genders')->paginate(20);
 
         return view('admin.user.index', ['users' => $users]);
     }

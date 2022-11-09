@@ -5,11 +5,8 @@ namespace Database\Factories;
 use App\Models\Filter;
 use App\Models\Gender;
 use App\Models\Smoking;
-use Illuminate\Support\Str;
 use App\Models\SexualOrietation;
-use Database\Seeders\FilterSeeder;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -61,7 +58,6 @@ class UserFactory extends Factory
             'nick_name'             => fake()->name(),
             'cell'                  => fake()->phoneNumber(),
             'year'                  => fake()->numberBetween(18, 80),
-            // 'photo'                 => fake()->randomElement($imagens),
             'photo'                 => fake()->randomElement($imagens),
             'description'           => fake()->sentence(),
             'job'                   => fake()->jobTitle(),

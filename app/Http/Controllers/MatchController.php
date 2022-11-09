@@ -17,13 +17,13 @@ class MatchController extends Controller
                         'smokings', 
                         'combines'
                     );
+                    
         $filter = Filter::where('id', auth()->user()->id)
                           ->with('sexualOrietations', 'genders', 'smokings')
                           ->get();
 
         $data   = $this->getFilter($oUsers, $filter);
         $datas  = $data->get(); 
-
         foreach($datas as $data){
             if ((count($data['combines']) == 0) && ($data->id != auth()->user()->id)) {
                 $checkIn[] = $data;
@@ -113,7 +113,7 @@ class MatchController extends Controller
 
                 foreach ($aDatas as $data) {
                     if(isset($data)){
-                        $users      = User::where('id', $data['user_first_id'])->get();
+                        $users   = User::where('id', $data['user_first_id'])->get();
                     }else{
                         $error[] = [];
                     }
@@ -166,5 +166,5 @@ class MatchController extends Controller
         Combine::where('id', $combines[0]->id)->update($newStatus);
         return redirect()->route('dashboard');
     }
-
+    
 }

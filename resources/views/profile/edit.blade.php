@@ -18,7 +18,7 @@
                                 <x-label for="sexual_orientation" :value="__('Orientação Sexual')" />
                                 <select name="sexual_orientation" class="block mt-1 w-full">
                                     @foreach ($sexualOrietations as $sexualOrietation)
-                                        <option value="{{ $sexualOrietation['id'] }}" {{ $sexualOrietation['id'] == $oUser[0]['sexualOrietations']->id ? "selected" : ""}}> {{ $sexualOrietation['name'] }}</option>
+                                        <option value="{{ $sexualOrietation['id'] }}" {{ $sexualOrietation['id'] == $oUser[0]->filters['sexual_orientation_id'] ? "selected" : ""}}> {{ $sexualOrietation['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -26,7 +26,7 @@
                                 <x-label for="gender" :value="__('Genero')" />
                                 <select name="gender" class="block mt-1 w-full">
                                     @foreach ($genders as $gender)
-                                        <option value="{{ $gender['id'] }}" {{ $gender['id'] == $oUser[0]['gender'] ? "selected" : ""}}> {{ $gender['name'] }}</option>
+                                        <option value="{{ $gender['id'] }}" {{ $gender['id'] == $oUser[0]->filters['gender_id'] ? "selected" : ""}}> {{ $gender['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -34,7 +34,7 @@
                                 <x-label for="smokings" :value="__('Fuma?')" />
                                 <select name="smokings" class="block mt-1 w-full">
                                     @foreach ($smokings as $smoking)
-                                    <option value="{{ $smoking['id'] }}" {{ $smoking['id'] == $oUser[0]['smoking_id'] ? "selected" : ""}}> {{ $smoking['name'] }}</option>
+                                    <option value="{{ $smoking['id'] }}" {{ $smoking['id'] == $oUser[0]->filters['smoking_id'] ? "selected" : ""}}> {{ $smoking['name'] }}</option>
                                     @endforeach
                                 </select>
                             </div>

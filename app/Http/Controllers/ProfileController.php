@@ -71,6 +71,7 @@ class ProfileController extends Controller
                                                         'smokings', 
                                                         'filters'
                                                     )->get();
+                                                    // dd($oUser);
         $sexualOrietations = SexualOrietation::get();
         $smokings          = Smoking::get();
         $genders           = Gender::get();
@@ -90,7 +91,7 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RequestUpdate $request, User $user, $id)
+    public function update(RequestUpdate $request, $id)
     {
         $data = $request->except(
                                 'sexual_orientation', 
@@ -108,6 +109,8 @@ class ProfileController extends Controller
             $fileName      = Str::slug($data['name'].'_'.$data['nick_name'], '_').'.'.$data['photo']->extension();
             $data['photo'] = $request->photo->storeAs('photo', $fileName, 'public');
         }
+  
+        User::where('id', $id)->update($data);
 
         $dataFilter = $request->only(
                                     'sexual_orientation', 
@@ -116,17 +119,10 @@ class ProfileController extends Controller
                                     'year_min', 
                                     'year_max'
                                 );
+
         $updateData      = $this->filterName($dataFilter);
 
         Filter::where('id', $id)->update($updateData);
-
-        $filterId = [
-            'filter_id' => auth()->user()->filter_id
-        ];
-        
-        $updateProfile = (array_merge($data, $filterId));
-     
-        User::where('id', $id)->update($updateProfile);
 
         return redirect()->route('profile.index');
     }

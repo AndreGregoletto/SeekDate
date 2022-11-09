@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Combine;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,13 +16,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            GenderSeeder::class,
             SexualOrietationSeeder::class,
             SmokingSeeder::class,
-            // FilterSeeder::class,
-            // UserSeeder::class,
+            GenderSeeder::class,
+            FilterSeeder::class,
+            UserSeeder::class,
         ]);
+        User::factory(200)->create();
+        Combine::factory(2200)->create();
 
-        User::factory(50)->create();
     }
 }
