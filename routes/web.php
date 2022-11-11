@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,10 @@ Route::controller(MatchController::class)->middleware(['auth'])->group(function(
     route::post('returnAccept', 'returnAccept')->name('returnAccept');
 
     route::post('returnRecuse', 'returnRecuse')->name('returnRecuse');
+});
+
+Route::controller(ChatController::class)->middleware(['auth'])->group(function(){
+    Route::get('chat', 'index')->name('chat');
 });
 
 require __DIR__.'/auth.php';

@@ -24,6 +24,12 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('chat')" :active="request()->routeIs('chat')">
+                        {{ __('Chat') }} <!-- Nome no menu -->
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('match')" :active="request()->routeIs('match')">
                         {{ __('Meus Interesses') }} <!-- Nome no menu -->
                     </x-nav-link>

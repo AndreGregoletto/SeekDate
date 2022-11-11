@@ -102,11 +102,14 @@ class MatchController extends Controller
 
     public function whoMatchMe()
     {
-        $combines = Combine::where('user_secound_id', auth()->user()->id)->orderBy('active', 'asc')->with('users')->get();
+        $combines = Combine::where('user_secound_id', auth()->user()->id)
+                            ->where('active', 0)
+                            ->orderBy('active', 'asc')
+                            ->with('users')
+                            ->get();
 
         foreach($combines as $combine){
-
-            if(($combine->user_secound_id == auth()->user()->id) && ($combine->user_first_active == 1) && ($combine->active == 0)){
+            if($combine->user_first_active == 1) {
                 $aDatas[] = [
                     'user_first_id' => $combine->user_first_id
                 ] ;
@@ -119,14 +122,15 @@ class MatchController extends Controller
                     }
                 }
                 $oProfile = $users[0];
-
                 return view('dashboard', ['oProfile' => $oProfile]);
                 
             }else{
+                Combine::where('id', $combine->id)->delete();
                 return view('dashboard'); 
             }
         }
 
+        return view('dashboard');
     }
 
     public function returnAccept(MatchRequest $request)
