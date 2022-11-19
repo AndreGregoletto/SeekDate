@@ -4,23 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Combine;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
     public function index()
     {
-        $usersChat= Combine::where('user_first_active', 1)
+        $usersChat = Combine::where('user_first_active', 1)
                             ->where('user_secound_active', 1)
                             ->where('active', 1)
                             ->where('user_secound_id', auth()->user()->id)
                             ->with('users')
                             ->get();
+
+        // $usersChat = Combine::whereUser_first_activeAndUser_secound_activeAndActiveAndUser_secound_id(1, 1, 1, auth()->user()->id)->with('users')->get();
+
         $chatSelect = [];
 
         foreach($usersChat as $userChat){
             $userId = $userChat->user_first_id;
-            $user   = User::where('id', $userId)->get();
+            $user   = User::whereId($userId)->get();
 
             $chatSelect[] = [
                 'id'        => $user[0]->id,

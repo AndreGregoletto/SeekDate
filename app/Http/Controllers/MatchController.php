@@ -18,7 +18,7 @@ class MatchController extends Controller
                         'combines'
                     );
                     
-        $filter = Filter::where('id', auth()->user()->id)
+        $filter = Filter::whereId(auth()->user()->id)
                           ->with('sexualOrietations', 'genders', 'smokings')
                           ->get();
 

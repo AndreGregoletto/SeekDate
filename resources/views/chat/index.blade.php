@@ -7,7 +7,7 @@
         </h2>
     </x-slot>
 
-    @if(isset($usersChat[0])))
+    @if(isset($usersChat[0]))
     <div class="container mt-5">
         <div class="row justify-content-between">
             <div class="position-relative col-2">
